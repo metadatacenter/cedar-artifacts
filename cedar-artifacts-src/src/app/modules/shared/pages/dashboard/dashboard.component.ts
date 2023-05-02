@@ -9,6 +9,7 @@ import {DataHandlerService} from '../../../../services/data-handler.service';
 import {AppConfigService} from '../../../../services/app-config.service';
 import {KeycloakService} from "keycloak-angular";
 import {UiService} from "../../../../services/ui.service";
+import './cedar-form';
 
 @Component({
   selector: 'app-dashboard',
