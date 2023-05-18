@@ -9,6 +9,7 @@ import {MaterialModule} from '../../modules/material-module';
 import {HeaderComponent} from "./components/header/header.component";
 import {JsonViewComponent} from "./components/json-view/json-view.component";
 import {ClipboardModule} from "@angular/cdk/clipboard";
+import { CedarDataSaverComponent } from './components/cedar-data-saver/cedar-data-saver.component';
 
 @NgModule({
   imports: [
@@ -24,19 +25,21 @@ import {ClipboardModule} from "@angular/cdk/clipboard";
     SpinnerComponent,
     DashboardComponent,
     HeaderComponent,
-    JsonViewComponent
+    JsonViewComponent,
+    CedarDataSaverComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  exports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    TranslateModule,
-    SpinnerComponent,
-    HeaderComponent,
-    JsonViewComponent
-  ]
+    exports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        TranslateModule,
+        SpinnerComponent,
+        HeaderComponent,
+        JsonViewComponent,
+        CedarDataSaverComponent
+    ]
 })
 export class SharedModule {
 }

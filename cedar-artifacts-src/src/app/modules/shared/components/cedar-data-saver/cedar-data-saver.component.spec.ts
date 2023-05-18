@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { CedarDataSaverComponent } from './cedar-data-saver.component';
+
+describe('CedarDataSaverComponent', () => {
+  let component: CedarDataSaverComponent;
+  let fixture: ComponentFixture<CedarDataSaverComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ CedarDataSaverComponent ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(CedarDataSaverComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
