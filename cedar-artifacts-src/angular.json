@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/cedar-artifacts-src",
+            "outputPath": "dist/cedar-artifacts",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
