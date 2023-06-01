@@ -58,7 +58,6 @@ export class InstancesEditComponent extends CedarPageComponent implements OnInit
       "dataSaverEndpointUrl": "http://localhost:8000/datasave.php",
       "sampleTemplateLocationPrefix": "https://component.metadatacenter.orgx/cedar-embeddable-editor-sample-templates/",
       "showSampleTemplateLinks": false,
-      "loadSampleTemplateName": "19",
       "terminologyProxyUrl": "https://api-php.cee.metadatacenter.orgx/index.php",
       "showHeader": false,
       "showFooter": false,
@@ -78,7 +77,6 @@ export class InstancesEditComponent extends CedarPageComponent implements OnInit
   }
   private instanceLoadedCallback(instanceId) {
     this.instance = this.dataStore.getTemplateInstance(this.templateInstanceId);
-    this.conf['instanceJSON'] = this.instance;
     this.templateId = TemplateService.isBasedOn(this.instance);
 
     // load the template it is based on
@@ -89,16 +87,7 @@ export class InstancesEditComponent extends CedarPageComponent implements OnInit
 
   private templateLoadedCallback(templateId) {
     this.template = this.dataStore.getTemplate(templateId);
-    this.conf['templateJSON'] = this.template;
     this.ready = true;
-
-    // // if this is a default instance, save the template info
-    // if (!TemplateService.isBasedOn(this.instance)) {
-    //   const schema = TemplateService.schemaOf(this.template);
-    //   TemplateService.setBasedOn(this.instance, TemplateService.getId(schema));
-    //   TemplateService.setName(this.instance, TemplateService.getName(schema));
-    //   TemplateService.setHelp(this.instance, TemplateService.getHelp(schema));
-    // }
   }
 
   private instanceErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {

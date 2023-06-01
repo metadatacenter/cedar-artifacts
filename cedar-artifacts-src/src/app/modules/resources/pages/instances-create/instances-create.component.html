@@ -1,8 +1,9 @@
 <app-header title="Create Instance"></app-header>
 <ng-container *ngIf="ready">
+  <button mat-button (click)="saveToCedar()">Save</button>
   <cedar-embeddable-editor
     [config]="conf"
-    [template]="template"
+    [templateObject]="template"
   ></cedar-embeddable-editor>
   <app-cedar-data-saver [operation]="operation"></app-cedar-data-saver>
 </ng-container>

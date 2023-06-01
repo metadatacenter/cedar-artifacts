@@ -54,7 +54,6 @@ export class InstancesCreateComponent extends CedarPageComponent implements OnIn
       "dataSaverEndpointUrl": "http://localhost:8000/datasave.php",
       "sampleTemplateLocationPrefix": "https://component.metadatacenter.orgx/cedar-embeddable-editor-sample-templates/",
       "showSampleTemplateLinks": false,
-      "loadSampleTemplateName": "19",
       "terminologyProxyUrl": "https://api-php.cee.metadatacenter.orgx/index.php",
       "showHeader": false,
       "showFooter": false,
@@ -72,9 +71,9 @@ export class InstancesCreateComponent extends CedarPageComponent implements OnIn
       .load(() => this.dataLoadedCallback(), (error, dataStatus) => this.dataErrorCallback(error, dataStatus));
   }
   private dataLoadedCallback() {
-    this.conf['templateJSON'] = this.dataStore.getTemplate(this.templateId);
+    this.template = this.dataStore.getTemplate(this.templateId);
     this.ready = true;
-    console.log('Template loaded', this.conf['templateJSON']);
+    console.log('Template loaded', this.template);
   }
   private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
     this.artifactStatus = error.status;
