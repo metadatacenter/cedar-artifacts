@@ -43,6 +43,7 @@ export class InstancesCreateComponent extends CedarPageComponent implements OnIn
     private configService: AppConfigService,
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak);
+    // TODO: this conf should be input parameter
     this.conf = {
       "showTemplateUpload": false,
       "templateUploadResponseSuccess": "success",
@@ -79,11 +80,6 @@ export class InstancesCreateComponent extends CedarPageComponent implements OnIn
   }
   private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
     this.artifactStatus = error.status;
-  }
-  saveToCedar(): void {
-    const cee: any = document.querySelector('cedar-embeddable-editor');
-    const meta = cee.currentMetadata;
-    console.log("META", meta);
   }
 }
 

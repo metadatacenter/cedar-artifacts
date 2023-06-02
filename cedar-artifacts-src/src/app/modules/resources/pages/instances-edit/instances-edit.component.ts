@@ -46,6 +46,8 @@ export class InstancesEditComponent extends CedarPageComponent implements OnInit
     private uiService: UiService
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak);
+
+    // TODO: these conf should be input to components
     this.conf = {
       "showTemplateUpload": false,
       "templateUploadResponseSuccess": "success",
