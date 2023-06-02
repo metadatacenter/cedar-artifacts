@@ -3,6 +3,7 @@ import {Component, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/c
 import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {Observable, Subscription} from 'rxjs';
 import {MessageHandlerService} from '../../../../services/message-handler.service';
+import {environment, globalScope} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-cedar-data-saver',
@@ -22,7 +23,7 @@ export class CedarDataSaverComponent implements OnInit, OnDestroy {
   @Input() endpointUrl: string = null;
   @Input() operation: string;
 
-  httpRequestParams: | HttpParams | { [param: string]: string | string[]; };
+  httpRequestParams: HttpParams;
   httpPostSubscription = new Subscription();
 
   showProgress = false;
@@ -80,25 +81,30 @@ export class CedarDataSaverComponent implements OnInit, OnDestroy {
   }
 
   private httpRequest(): Observable<any> {
-    const baseUrl = 'https://resource.metadatacenter.orgx/template-instances';
+    const baseUrl = environment.apiUrl + 'template-instances';
     const cee: any = document.querySelector('cedar-embeddable-editor');
     const meta = cee.currentMetadata;
+    // TODO: inject the template name
+    let templateName = "Template name here"
+    // TODO: inject the template id
+    let templateId = "https://repo.metadatacenter.orgx/templates/593922fe-d916-4356-8fca-62df8391c9fb"
+    meta['schema:name'] = templateName + ' metadata';
+    meta['schema:isBasedOn'] = templateId;
+    meta['schema:description'] = '';
     console.log('Meta', meta);
     const body = meta;
     let method = '';
 
-    // TODO: below are made static for trial purposes, should be dynamically added
     const httpHeaders = new HttpHeaders({
-      'CEDAR-Client-Session-Id': '0c5d0bd1-1a6a-4353-b96b-0d17eff059b2',
-      'Content-Type': 'application/json;charset=UTF-8',
-      'Cache-Control': 'no-cache',
+      'CEDAR-Client-Session-Id': globalScope.cedarClientSessionId,
+      'CEDAR-Debug': 'true'
     });
-    if (this.operation==='Create') {
+    if (this.operation === 'Create') {
       method = 'POST';
-      this.httpRequestParams = {};
-      this.httpRequestParams[CedarDataSaverComponent.FOLDER_ID] = this.folderId;
+      this.httpRequestParams = new HttpParams().set(CedarDataSaverComponent.FOLDER_ID, this.folderId);
     } else {
       method = 'PUT';
+      this.httpRequestParams = new HttpParams();
     }
 
     return this.httpClient.request(method, baseUrl, {
