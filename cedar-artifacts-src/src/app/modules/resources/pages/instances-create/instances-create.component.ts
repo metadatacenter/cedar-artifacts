@@ -23,6 +23,7 @@ export class InstancesCreateComponent extends CedarPageComponent implements OnIn
 
   conf: object = {};
   templateId: string = '';
+  folderId: string = '';
   template: Template = null;
   artifactStatus: number = null;
   ready: boolean = false;
@@ -65,6 +66,7 @@ export class InstancesCreateComponent extends CedarPageComponent implements OnIn
 
     this.initDataHandler();
     this.templateId = this.route.snapshot.paramMap.get('templateId');
+    this.folderId = this.route.snapshot.queryParamMap.get('folderId');
     this.dataHandler
       .requireId(DataHandlerDataId.TEMPLATE, this.templateId)
       // @ts-ignore

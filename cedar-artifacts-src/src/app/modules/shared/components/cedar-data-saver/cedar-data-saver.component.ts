@@ -18,7 +18,7 @@ export class CedarDataSaverComponent implements OnInit, OnDestroy {
   private static readonly PARAM_TITLE = 'title';
   private static readonly FOLDER_ID = 'folder_id';
 
-  // @Input() dataContext: DataContext = null;
+  @Input() folderId: string = null;
   @Input() endpointUrl: string = null;
   @Input() operation: string;
 
@@ -37,6 +37,7 @@ export class CedarDataSaverComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    console.log("Initialized", this.folderId);
   }
 
   saveInstance(event): void {
@@ -48,10 +49,6 @@ export class CedarDataSaverComponent implements OnInit, OnDestroy {
             this.clearError();
             this.showSuccess = true;
             this.successMessage = 'Metadata saved successfully';
-
-            // if (data['body'][CedarDataSaverComponent.PARAM_ID]) {
-            //   this.dataContext.savedTemplateID = data['body'][CedarDataSaverComponent.PARAM_ID];
-            // }
             this.messageHandlerService.traceObject('Data received from the server:', data);
           } else {
             this.clearSuccess();
@@ -83,32 +80,27 @@ export class CedarDataSaverComponent implements OnInit, OnDestroy {
   }
 
   private httpRequest(): Observable<any> {
-    const folderId = 'https%3A%2F%2Frepo.metadatacenter.orgx%2Ffolders%2F7d24c865-b5eb-4650-9375-3c744f11c6ad';
     const baseUrl = 'https://resource.metadatacenter.orgx/template-instances';
     const cee: any = document.querySelector('cedar-embeddable-editor');
     const meta = cee.currentMetadata;
     console.log('Meta', meta);
     const body = meta;
+    let method = '';
 
-    // if (this.dataContext.templateInfo) {
-    //   Object.assign(body.info, this.dataContext.templateInfo);
-    // }
+    // TODO: below are made static for trial purposes, should be dynamically added
     const httpHeaders = new HttpHeaders({
       'CEDAR-Client-Session-Id': '0c5d0bd1-1a6a-4353-b96b-0d17eff059b2',
       'Content-Type': 'application/json;charset=UTF-8',
       'Cache-Control': 'no-cache',
-      'Host': 'artifact.metadatacenter.orgx',
-      'Origin': 'https://artifacts.metadatacenter.orgx',
-      'Referer': 'https://artifacts.metadatacenter.orgx/'
     });
-    let method = 'POST';
-    this.httpRequestParams = {};
-    this.httpRequestParams[CedarDataSaverComponent.FOLDER_ID] = folderId;
+    if (this.operation==='Create') {
+      method = 'POST';
+      this.httpRequestParams = {};
+      this.httpRequestParams[CedarDataSaverComponent.FOLDER_ID] = this.folderId;
+    } else {
+      method = 'PUT';
+    }
 
-    // if (this.dataContext.savedTemplateID) {
-    //   method = 'PUT';
-    //   this.httpRequestParams[CedarDataSaverComponent.PARAM_ID] = this.dataContext.savedTemplateID;
-    // }
     return this.httpClient.request(method, baseUrl, {
       body,
       headers: httpHeaders,
