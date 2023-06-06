@@ -1,5 +1,4 @@
 import {Component, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-// import {DataContext} from '../../util/data-context';
 import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {Observable, Subscription} from 'rxjs';
 import {MessageHandlerService} from '../../../../services/message-handler.service';
@@ -21,6 +20,7 @@ export class CedarDataSaverComponent implements OnInit, OnDestroy {
 
   @Input() folderId: string = null;
   @Input() templateId;
+  @Input() templateInstanceId;
   @Input() operation: string;
   @Input() templateName;
 
@@ -82,13 +82,9 @@ export class CedarDataSaverComponent implements OnInit, OnDestroy {
   }
 
   private httpRequest(): Observable<any> {
-    const baseUrl = environment.apiUrl + 'template-instances';
+    let baseUrl = environment.apiUrl + 'template-instances';
     const cee: any = document.querySelector('cedar-embeddable-editor');
     const meta = cee.currentMetadata;
-    // TODO: inject the template name
-    // let templateName = "Template name here"
-    // TODO: inject the template id
-    // let templateId = "https://repo.metadatacenter.orgx/templates/593922fe-d916-4356-8fca-62df8391c9fb"
     meta['schema:name'] = this.templateName + ' metadata';
     meta['schema:isBasedOn'] = this.templateId;
     meta['schema:description'] = '';
@@ -105,6 +101,7 @@ export class CedarDataSaverComponent implements OnInit, OnDestroy {
       this.httpRequestParams = new HttpParams().set(CedarDataSaverComponent.FOLDER_ID, this.folderId);
     } else {
       method = 'PUT';
+      baseUrl = baseUrl + '/' + encodeURIComponent(this.templateInstanceId);
       this.httpRequestParams = new HttpParams();
     }
 
