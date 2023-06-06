@@ -25,6 +25,7 @@ export class InstancesCreateComponent extends CedarPageComponent implements OnIn
   templateId: string = '';
   folderId: string = '';
   template: Template = null;
+  templateName: string = null;
   artifactStatus: number = null;
   ready: boolean = false;
   operation: string = 'Create';
@@ -75,8 +76,8 @@ export class InstancesCreateComponent extends CedarPageComponent implements OnIn
   }
   private dataLoadedCallback() {
     this.template = this.dataStore.getTemplate(this.templateId);
+    this.templateName = this.template.templateName;
     this.ready = true;
-    console.log('Template loaded', this.template);
   }
   private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
     this.artifactStatus = error.status;

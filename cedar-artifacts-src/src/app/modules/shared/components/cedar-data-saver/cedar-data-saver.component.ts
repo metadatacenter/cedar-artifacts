@@ -20,8 +20,9 @@ export class CedarDataSaverComponent implements OnInit, OnDestroy {
   private static readonly FOLDER_ID = 'folder_id';
 
   @Input() folderId: string = null;
-  @Input() endpointUrl: string = null;
+  @Input() templateId;
   @Input() operation: string;
+  @Input() templateName;
 
   httpRequestParams: HttpParams;
   httpPostSubscription = new Subscription();
@@ -85,11 +86,11 @@ export class CedarDataSaverComponent implements OnInit, OnDestroy {
     const cee: any = document.querySelector('cedar-embeddable-editor');
     const meta = cee.currentMetadata;
     // TODO: inject the template name
-    let templateName = "Template name here"
+    // let templateName = "Template name here"
     // TODO: inject the template id
-    let templateId = "https://repo.metadatacenter.orgx/templates/593922fe-d916-4356-8fca-62df8391c9fb"
-    meta['schema:name'] = templateName + ' metadata';
-    meta['schema:isBasedOn'] = templateId;
+    // let templateId = "https://repo.metadatacenter.orgx/templates/593922fe-d916-4356-8fca-62df8391c9fb"
+    meta['schema:name'] = this.templateName + ' metadata';
+    meta['schema:isBasedOn'] = this.templateId;
     meta['schema:description'] = '';
     console.log('Meta', meta);
     const body = meta;

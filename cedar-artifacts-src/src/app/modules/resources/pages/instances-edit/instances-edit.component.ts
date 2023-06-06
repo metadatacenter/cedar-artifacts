@@ -8,7 +8,6 @@ import {DataHandlerService} from '../../../../services/data-handler.service';
 import {AppConfigService} from '../../../../services/app-config.service';
 import {KeycloakService} from "keycloak-angular";
 import {UiService} from "../../../../services/ui.service";
-import {TemplateService} from '../../../../services/template.service';
 import {CedarPageComponent} from "../../../shared/components/base/cedar-page-component.component";
 import {DataHandlerDataId} from "../../../shared/model/data-handler-data-id.model";
 import {DataHandlerDataStatus} from "../../../shared/model/data-handler-data-status.model";
@@ -27,6 +26,7 @@ export class InstancesEditComponent extends CedarPageComponent implements OnInit
 
   templateInstance: object = {};
   template: Template = null;
+  templateName: string =null;
   instance: TemplateInstance = null;
   artifactStatus: number = null;
   templateStatus: number = null;
@@ -79,7 +79,7 @@ export class InstancesEditComponent extends CedarPageComponent implements OnInit
   }
   private instanceLoadedCallback(instanceId) {
     this.instance = this.dataStore.getTemplateInstance(this.templateInstanceId);
-    this.templateId = TemplateService.isBasedOn(this.instance);
+    this.templateId = this.instance.isBasedOn;
 
     // load the template it is based on
     this.dataHandler
@@ -89,6 +89,7 @@ export class InstancesEditComponent extends CedarPageComponent implements OnInit
 
   private templateLoadedCallback(templateId) {
     this.template = this.dataStore.getTemplate(templateId);
+    this.templateName = this.template.templateName;
     this.ready = true;
   }
 
