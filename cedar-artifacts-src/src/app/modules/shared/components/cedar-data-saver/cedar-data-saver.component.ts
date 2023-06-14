@@ -1,4 +1,5 @@
-import {Component, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Inject, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {DOCUMENT} from "@angular/common";
 import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {Observable, Subscription} from 'rxjs';
 import {MessageHandlerService} from '../../../../services/message-handler.service';
@@ -26,16 +27,16 @@ export class CedarDataSaverComponent implements OnInit, OnDestroy {
 
   httpRequestParams: HttpParams;
   httpPostSubscription = new Subscription();
-
   showProgress = false;
   showSuccess = false;
   showError = false;
   progressMessage = 'Processing...';
   successMessage = '';
   errorMessage = '';
+  window: any;
 
-
-  constructor(private httpClient: HttpClient, private messageHandlerService: MessageHandlerService) {
+  constructor(@Inject(DOCUMENT) private _document, private httpClient: HttpClient, private messageHandlerService: MessageHandlerService) {
+    this.window = this._document.defaultView;
   }
 
   ngOnInit(): void {
@@ -43,6 +44,7 @@ export class CedarDataSaverComponent implements OnInit, OnDestroy {
   }
 
   saveInstance(event): void {
+    console.log("Window", window);
     this.httpPostSubscription.add(
       this.httpRequest().subscribe(
         (data: any) => {
@@ -51,7 +53,11 @@ export class CedarDataSaverComponent implements OnInit, OnDestroy {
             this.clearError();
             this.showSuccess = true;
             this.successMessage = 'Metadata saved successfully';
+            console.log("Reloading", this.window.opener.location);
+            // this.window.opener.location.href = "https://cedar.metadatacenter.orgx/dashboard?folderId=https:%2F%2Frepo.metadatacenter.orgx%2Ffolders%2F7d24c865-b5eb-4650-9375-3c744f11c6ad";
+            this.window.opener.location.reload();
             this.messageHandlerService.traceObject('Data received from the server:', data);
+            self.close();
           } else {
             this.clearSuccess();
             this.clearError();
