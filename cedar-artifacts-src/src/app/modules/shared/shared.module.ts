@@ -10,6 +10,7 @@ import {HeaderComponent} from "./components/header/header.component";
 import {JsonViewComponent} from "./components/json-view/json-view.component";
 import {ClipboardModule} from "@angular/cdk/clipboard";
 import { CedarDataSaverComponent } from './components/cedar-data-saver/cedar-data-saver.component';
+import { CancelComponent } from './components/cancel/cancel.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { CedarDataSaverComponent } from './components/cedar-data-saver/cedar-dat
     DashboardComponent,
     HeaderComponent,
     JsonViewComponent,
-    CedarDataSaverComponent
+    CedarDataSaverComponent,
+    CancelComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
     exports: [
@@ -38,7 +40,8 @@ import { CedarDataSaverComponent } from './components/cedar-data-saver/cedar-dat
         SpinnerComponent,
         HeaderComponent,
         JsonViewComponent,
-        CedarDataSaverComponent
+        CedarDataSaverComponent,
+        CancelComponent
     ]
 })
 export class SharedModule {

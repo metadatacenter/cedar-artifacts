@@ -60,7 +60,7 @@ export class InstancesEditComponent extends CedarPageComponent implements OnInit
       "dataSaverEndpointUrl": "http://localhost:8000/datasave.php",
       "sampleTemplateLocationPrefix": "https://component.metadatacenter.orgx/cedar-embeddable-editor-sample-templates/",
       "showSampleTemplateLinks": false,
-      "terminologyProxyUrl": "https://api-php.cee.metadatacenter.orgx/index.php",
+      "terminologyProxyUrl": 'https://terminology.metadatacenter.org/bioportal/integrated-search',
       "showHeader": false,
       "showFooter": false,
     };
@@ -90,6 +90,7 @@ export class InstancesEditComponent extends CedarPageComponent implements OnInit
   private templateLoadedCallback(templateId) {
     this.template = this.dataStore.getTemplate(templateId);
     this.templateName = this.template.templateName;
+    console.log("Instance and template ready", this.instance, this.template);
     this.ready = true;
   }
 
@@ -104,7 +105,6 @@ export class InstancesEditComponent extends CedarPageComponent implements OnInit
   saveToCedar(): void {
     const cee: any = document.querySelector('cedar-embeddable-editor');
     const meta = cee.currentMetadata;
-    console.log("META", meta);
   }
 
 }

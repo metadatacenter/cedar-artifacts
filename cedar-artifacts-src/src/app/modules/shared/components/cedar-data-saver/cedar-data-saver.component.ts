@@ -11,7 +11,7 @@ import {environment, globalScope} from "../../../../../environments/environment"
   styleUrls: ['./cedar-data-saver.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class CedarDataSaverComponent implements OnInit, OnDestroy {
+export class CedarDataSaverComponent implements OnDestroy {
 
   // Number of milliseconds to display the submission success message
   private static readonly SUCCESS_MESSAGE_TIMEOUT = 5000;
@@ -39,12 +39,7 @@ export class CedarDataSaverComponent implements OnInit, OnDestroy {
     this.window = this._document.defaultView;
   }
 
-  ngOnInit(): void {
-    console.log("Initialized", this.folderId);
-  }
-
   saveInstance(event): void {
-    console.log("Window", window);
     this.httpPostSubscription.add(
       this.httpRequest().subscribe(
         (data: any) => {
@@ -53,11 +48,7 @@ export class CedarDataSaverComponent implements OnInit, OnDestroy {
             this.clearError();
             this.showSuccess = true;
             this.successMessage = 'Metadata saved successfully';
-            console.log("Reloading", this.window.opener.location);
-            // this.window.opener.location.href = "https://cedar.metadatacenter.orgx/dashboard?folderId=https:%2F%2Frepo.metadatacenter.orgx%2Ffolders%2F7d24c865-b5eb-4650-9375-3c744f11c6ad";
-            this.window.opener.location.reload();
             this.messageHandlerService.traceObject('Data received from the server:', data);
-            self.close();
           } else {
             this.clearSuccess();
             this.clearError();
@@ -94,7 +85,6 @@ export class CedarDataSaverComponent implements OnInit, OnDestroy {
     meta['schema:name'] = this.templateName + ' metadata';
     meta['schema:isBasedOn'] = this.templateId;
     meta['schema:description'] = '';
-    console.log('Meta', meta);
     const body = meta;
     let method = '';
 
@@ -142,5 +132,4 @@ export class CedarDataSaverComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.httpPostSubscription.unsubscribe();
   }
-
 }

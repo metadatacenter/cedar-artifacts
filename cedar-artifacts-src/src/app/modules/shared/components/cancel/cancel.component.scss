@@ -1,8 +1,8 @@
 .flex-container-data-saver {
-  display:inline-block;;
+  display:inline-block;
   align-items: center;
   justify-content: right;
-  margin-top: 20px;
+  margin-bottom: 20px;
   float: right;
 
   .flex-child1 {
@@ -16,9 +16,8 @@
   }
 }
 
-.metadata-save-button {
+.metadata-cancel-button {
   padding: 8px 50px !important;
   font-size: 16px;
   font-weight: 400;
 }
-

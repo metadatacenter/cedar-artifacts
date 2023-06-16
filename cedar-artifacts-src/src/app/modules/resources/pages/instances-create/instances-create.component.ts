@@ -57,7 +57,7 @@ export class InstancesCreateComponent extends CedarPageComponent implements OnIn
       "dataSaverEndpointUrl": "http://localhost:8000/datasave.php",
       "sampleTemplateLocationPrefix": "https://component.metadatacenter.orgx/cedar-embeddable-editor-sample-templates/",
       "showSampleTemplateLinks": false,
-      "terminologyProxyUrl": "https://api-php.cee.metadatacenter.orgx/index.php",
+      "terminologyProxyUrl": 'https://terminology.metadatacenter.org/bioportal/integrated-search',
       "showHeader": false,
       "showFooter": false,
     };
