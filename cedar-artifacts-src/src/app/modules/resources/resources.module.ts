@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {SharedModule} from '../shared';
 import {ResourcesRoutingModule} from './resources-routing.module';
 import {MaterialModule} from '../material-module';
@@ -12,6 +12,7 @@ import {InstancesEditComponent} from "./pages/instances-edit/instances-edit.comp
     ProfileComponent,
     InstancesEditComponent
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   imports: [
     SharedModule,
     ResourcesRoutingModule,

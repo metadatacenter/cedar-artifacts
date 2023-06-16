@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
@@ -9,6 +9,8 @@ import {MaterialModule} from '../../modules/material-module';
 import {HeaderComponent} from "./components/header/header.component";
 import {JsonViewComponent} from "./components/json-view/json-view.component";
 import {ClipboardModule} from "@angular/cdk/clipboard";
+import { CedarDataSaverComponent } from './components/cedar-data-saver/cedar-data-saver.component';
+import { CancelComponent } from './components/cancel/cancel.component';
 
 @NgModule({
   imports: [
@@ -24,18 +26,23 @@ import {ClipboardModule} from "@angular/cdk/clipboard";
     SpinnerComponent,
     DashboardComponent,
     HeaderComponent,
-    JsonViewComponent
+    JsonViewComponent,
+    CedarDataSaverComponent,
+    CancelComponent
   ],
-  exports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    TranslateModule,
-    SpinnerComponent,
-    HeaderComponent,
-    JsonViewComponent
-  ]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    exports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        TranslateModule,
+        SpinnerComponent,
+        HeaderComponent,
+        JsonViewComponent,
+        CedarDataSaverComponent,
+        CancelComponent
+    ]
 })
 export class SharedModule {
 }
