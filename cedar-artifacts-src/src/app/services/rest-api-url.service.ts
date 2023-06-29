@@ -19,5 +19,18 @@ export class RestApiUrlService {
   private base() {
     return `${this.API_URL}`;
   }
+  private templateInstances() {
+    return `${this.base()}template-instances`;
+  }
+  private templates() {
+    return `${this.base()}templates`;
+  }
+  template(id: string) {
+    return `${this.templates()}/${encodeURIComponent(id)}`;
+  }
+
+  templateInstance(id: string) {
+    return `${this.templateInstances()}/${encodeURIComponent(id)}`;
+  }
 
 }

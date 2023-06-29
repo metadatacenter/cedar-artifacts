@@ -15,9 +15,9 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
-            "outputPath": "dist/cedar-artifacts-src",
+            "outputPath": "dist/cedar-artifacts",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -27,13 +27,25 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets/data",
+              "src/assets/i18n",
+              "src/assets/silent-check-sso.html",
+              {
+                "glob": "{*loader.js,*adapter.js,bundles/*.js}",
+                "input": "node_modules/@webcomponents/webcomponentsjs/",
+                "output": "node_modules/@webcomponents/webcomponentsjs"
+              }
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "base64-js",
+              "js-sha256"
+            ],
+            "indexTransform": "./index-html-transform.ts"
           },
           "configurations": {
             "production": {
@@ -75,7 +87,7 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "configurations": {
             "production": {
               "browserTarget": "cedar-artifacts:build:production"
@@ -105,7 +117,12 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "{*loader.js,*adapter.js,bundles/*.js}",
+                "input": "node_modules/@webcomponents/webcomponentsjs/",
+                "output": "node_modules/@webcomponents/webcomponentsjs"
+              }
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
@@ -116,5 +133,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

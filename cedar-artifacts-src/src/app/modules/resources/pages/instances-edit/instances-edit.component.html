@@ -1,1 +1,17 @@
 <app-header title="Edit Instance"></app-header>
+<ng-container *ngIf="ready">
+  <cedar-embeddable-editor
+    [config]="conf"
+    [templateObject]="template"
+    [instanceObject]="instance"
+  ></cedar-embeddable-editor>
+  <app-cedar-data-saver
+    [operation]="operation"
+    [templateId]="templateId"
+    [templateName]="templateName"
+    [templateInstanceId]="templateInstanceId"
+  ></app-cedar-data-saver>
+  <app-cancel
+    [operation]="operation"
+  ></app-cancel>
+</ng-container>

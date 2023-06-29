@@ -9,7 +9,7 @@ const routes: Routes = [
     component: DashboardComponent,
     pathMatch: 'full',
     canActivate: [AuthGuard]
-  }
+  },
 ];
 
 @NgModule({

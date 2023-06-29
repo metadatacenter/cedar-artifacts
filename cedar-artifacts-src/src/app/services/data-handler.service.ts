@@ -4,6 +4,10 @@ import {DataStoreService} from './data-store.service';
 import {TranslateService} from '@ngx-translate/core';
 import {DataHandlerDataId} from '../modules/shared/model/data-handler-data-id.model';
 import {SpinnerService} from './spinner.service';
+import {TemplateService} from './load-data/template.service';
+import {Template} from '../shared/model/template.model';
+import {TemplateInstance} from '../shared/model/template-instance.model';
+import {TemplateInstanceService} from './load-data/template-instance.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +24,8 @@ export class DataHandlerService {
     public dataStore: DataStoreService,
     public spinner: SpinnerService,
     private translateService: TranslateService,
+    private templateService: TemplateService,
+    private templateInstanceService: TemplateInstanceService,
   ) {
     this.dataIdMap = new Map<string, DataHandlerDataStatus>();
     this.dataAvailable = false;
@@ -68,9 +74,36 @@ export class DataHandlerService {
 
   private loadData(dataStatus: DataHandlerDataStatus) {
     switch (dataStatus.dataId) {
+      case DataHandlerDataId.TEMPLATE:
+        this.loadTemplate(dataStatus);
+        break;
+      case DataHandlerDataId.TEMPLATE_INSTANCE:
+        this.loadTemplateInstance(dataStatus);
+        break;
     }
   }
 
+  private loadTemplate(dataStatus: DataHandlerDataStatus) {
+    this.templateService.getTemplate(dataStatus.id)
+      .subscribe(template => {
+          this.dataStore.setTemplate(dataStatus.id, Object.assign(new Template(), template));
+          this.dataWasLoaded(dataStatus);
+        },
+        (error) => {
+          this.handleLoadError(error, dataStatus);
+        });
+  }
+
+  private loadTemplateInstance(dataStatus: DataHandlerDataStatus) {
+    this.templateInstanceService.getTemplateInstance(dataStatus.id)
+      .subscribe(templateInstance => {
+          this.dataStore.setTemplateInstance(dataStatus.id, Object.assign(new TemplateInstance(), templateInstance));
+          this.dataWasLoaded(dataStatus);
+        },
+        error => {
+          this.handleLoadError(error, dataStatus);
+        });
+  }
   private handleLoadError(error: any, dataStatus: DataHandlerDataStatus) {
     dataStatus.errored = true;
     if (this.errorCallback != null) {
