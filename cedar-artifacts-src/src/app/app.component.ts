@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {globalScope} from "../environments/environment";
+import {globalScope} from "../environments/global-app-config";
 
 @Component({
   selector: 'app-root',

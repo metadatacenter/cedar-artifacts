@@ -1,9 +1,9 @@
-import {Component, Inject, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Inject, Input, OnDestroy, ViewEncapsulation} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {Observable, Subscription} from 'rxjs';
 import {MessageHandlerService} from '../../../../services/message-handler.service';
-import {environment, globalScope} from "../../../../../environments/environment";
+import {globalAppConfig, globalScope} from "../../../../../environments/global-app-config";
 
 @Component({
   selector: 'app-cedar-data-saver',
@@ -78,8 +78,30 @@ export class CedarDataSaverComponent implements OnDestroy {
     this.stopPropagation(event);
   }
 
+  clearProgress(): void {
+    this.showProgress = false;
+  }
+
+  clearSuccess(): void {
+    this.showSuccess = false;
+    this.successMessage = '';
+  }
+
+  clearError(): void {
+    this.showError = false;
+    this.errorMessage = '';
+  }
+
+  stopPropagation(event): void {
+    event.stopPropagation();
+  }
+
+  ngOnDestroy(): void {
+    this.httpPostSubscription.unsubscribe();
+  }
+
   private httpRequest(): Observable<any> {
-    let baseUrl = environment.apiUrl + 'template-instances';
+    let baseUrl = globalAppConfig.apiUrl + 'template-instances';
     const cee: any = document.querySelector('cedar-embeddable-editor');
     const meta = cee.currentMetadata;
     meta['schema:name'] = this.templateName + ' metadata';
@@ -109,27 +131,5 @@ export class CedarDataSaverComponent implements OnDestroy {
       reportProgress: true,
       responseType: 'json',
     });
-  }
-
-  clearProgress(): void {
-    this.showProgress = false;
-  }
-
-  clearSuccess(): void {
-    this.showSuccess = false;
-    this.successMessage = '';
-  }
-
-  clearError(): void {
-    this.showError = false;
-    this.errorMessage = '';
-  }
-
-  stopPropagation(event): void {
-    event.stopPropagation();
-  }
-
-  ngOnDestroy(): void {
-    this.httpPostSubscription.unsubscribe();
   }
 }

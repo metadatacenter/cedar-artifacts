@@ -1,2 +1,6 @@
 {
+  "appUrl": "https://artifacts.{{cedarDomain}}/",
+  "apiUrl": "https://resource.{{cedarDomain}}/",
+  "cedarUrl": "https://cedar.{{cedarDomain}}/",
+  "keycloakUrl": "https://auth.{{cedarDomain}}/"
 }

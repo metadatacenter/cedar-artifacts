@@ -88,14 +88,17 @@
         },
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
+          "options": {
+            "browserTarget": "cedar-artifacts:build",
+            "port": 4320,
+            "disableHostCheck": true
+          },
           "configurations": {
             "production": {
               "browserTarget": "cedar-artifacts:build:production"
             },
             "development": {
               "browserTarget": "cedar-artifacts:build:development",
-              "port": 4320,
-              "disableHostCheck": true
             }
           },
           "defaultConfiguration": "development"
