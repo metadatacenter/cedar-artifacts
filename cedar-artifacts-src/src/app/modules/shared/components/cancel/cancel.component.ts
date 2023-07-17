@@ -1,5 +1,6 @@
 import {Component, Inject, Input} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
+import {globalAppConfig} from "../../../../../environments/global-app-config";
 @Component({
   selector: 'app-cancel',
   templateUrl: './cancel.component.html',
@@ -15,8 +16,10 @@ export class CancelComponent {
   }
   cancel() {
     if(this.operation === 'Create') {
-      this.window.opener.location.href = "https://cedar.metadatacenter.orgx/dashboard?folderId=" + encodeURIComponent(this.folderId);
+      let redirectBase = globalAppConfig.cedarUrl + 'dashboard?folderId=';
+      this.window.opener.location.href = redirectBase + encodeURIComponent(this.folderId);
     }
     self.close();
   }
 }
+
