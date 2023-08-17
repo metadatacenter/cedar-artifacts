@@ -1,5 +1,8 @@
 import {Component} from '@angular/core';
 import {globalScope} from "../environments/global-app-config";
+import {TranslateService} from "@ngx-translate/core";
+import {environment} from "../environments/environment";
+import {LocalSettingsService} from "./services/local-settings.service";
 
 @Component({
   selector: 'app-root',
@@ -34,8 +37,16 @@ export class AppComponent {
     return uuid;
   }
 
-  constructor() {
+  constructor(private localSettings: LocalSettingsService, private translateService: TranslateService) {
     globalScope.cedarClientSessionId = this.createUUID();
+    translateService.setDefaultLang(environment.fallbackLanguage);
+
+    // the lang to use, if the lang isn't available, it will use the current loader to get them
+    let currentLanguage = localSettings.getLanguage();
+    if (currentLanguage == null) {
+      currentLanguage = environment.defaultLanguage;
+    }
+    translateService.use(currentLanguage);
   }
 
 }
