@@ -1,10 +1,10 @@
 <header>
   <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" [routerLink]="'/'" aria-label="Cedar artifacts home page">
+    <button mat-icon-button class="example-icon" aria-label="Cedar artifacts home page">
       <mat-icon>park</mat-icon>
     </button>
     <div style="width:100%">
-    <a [routerLink]="'/'">{{'App.NavTitle' | translate}}<ng-container *ngIf="title"> - {{title}}</ng-container></a>
+    <span >{{'App.NavTitle' | translate}}<ng-container *ngIf="title"> - {{title}}</ng-container></span>
     </div>
 
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="User">
