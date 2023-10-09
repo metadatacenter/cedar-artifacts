@@ -1,23 +1,24 @@
-<mat-toolbar color="primary">
-  <button mat-icon-button class="example-icon" [routerLink]="'/'">
-    <mat-icon>park</mat-icon>
-  </button>
-  <div style="width:100%">
-  <a [routerLink]="'/'">CEDAR Artifacts<ng-container *ngIf="title"> - {{title}}</ng-container></a>
-  </div>
-
-  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="User">
-    <mat-icon>account_circle</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="/profile">
-      <mat-icon>person</mat-icon>
-      <span>Profile</span>
+<header>
+  <mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Cedar artifacts home page">
+      <mat-icon>park</mat-icon>
     </button>
-    <button mat-menu-item (click)="openLogout()">
-      <mat-icon>logout</mat-icon>
-      <span>Logout</span>
-    </button>
-  </mat-menu>
+    <div style="width:100%">
+    <span >{{'App.NavTitle' | translate}}<ng-container *ngIf="title"> - {{title}}</ng-container></span>
+    </div>
 
-</mat-toolbar>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="User">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/profile">
+        <mat-icon>person</mat-icon>
+        <span>Profile</span>
+      </button>
+      <button mat-menu-item (click)="openLogout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+</header>

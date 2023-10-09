@@ -1,5 +1,8 @@
 import {Component} from '@angular/core';
 import {globalScope} from "../environments/global-app-config";
+import {TranslateService} from "@ngx-translate/core";
+import {environment} from "../environments/environment";
+import {LocalSettingsService} from "./services/local-settings.service";
 
 @Component({
   selector: 'app-root',
@@ -10,16 +13,8 @@ import {globalScope} from "../environments/global-app-config";
 export class AppComponent {
   title = 'cedar-artifacts';
   ceeConfig = {
-    "showTemplateUpload": false,
-    "templateUploadResponseSuccess": "success",
-    "templateUploadBaseUrl": "https://api-php.cee.metadatacenter.orgx",
-    "templateUploadEndpoint": "/upload.php",
-    "templateDownloadEndpoint": "/download.php",
-    "templateUploadParamName": "3520cf061bba4919a8ea4b74a07af01b",
-    "templateDownloadParamName": "9ff482bacac84c499655ab58efdf590a",
-    "showDataSaver": false,
     "showSampleTemplateLinks": false,
-    "terminologyProxyUrl": "https://api-php.cee.metadatacenter.orgx/index.php",
+    "terminologyIntegratedSearchUrl": "",
     "showHeader": false,
     "showFooter": false,
   };
@@ -34,8 +29,16 @@ export class AppComponent {
     return uuid;
   }
 
-  constructor() {
+  constructor(private localSettings: LocalSettingsService, private translateService: TranslateService) {
     globalScope.cedarClientSessionId = this.createUUID();
+    translateService.setDefaultLang(environment.fallbackLanguage);
+
+    // the lang to use, if the lang isn't available, it will use the current loader to get them
+    let currentLanguage = localSettings.getLanguage();
+    if (currentLanguage == null) {
+      currentLanguage = environment.defaultLanguage;
+    }
+    translateService.use(currentLanguage);
   }
 
 }

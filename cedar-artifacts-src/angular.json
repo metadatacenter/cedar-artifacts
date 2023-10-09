@@ -29,6 +29,8 @@
               "src/favicon.ico",
               "src/assets/data",
               "src/assets/i18n",
+              "src/assets/i18n-cee",
+              "src/assets/images",
               "src/assets/silent-check-sso.html",
               {
                 "glob": "{*loader.js,*adapter.js,bundles/*.js}",
@@ -58,8 +60,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "3.2mb",
+                  "maximumError": "3.5mb"
                 },
                 {
                   "type": "anyComponentStyle",

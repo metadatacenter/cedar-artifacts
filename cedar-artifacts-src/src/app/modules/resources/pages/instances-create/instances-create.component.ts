@@ -46,18 +46,8 @@ export class InstancesCreateComponent extends CedarPageComponent implements OnIn
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak);
     // TODO: this conf should be input parameter
     this.conf = {
-      "showTemplateUpload": false,
-      "templateUploadResponseSuccess": "success",
-      "templateUploadBaseUrl": "https://api-php.cee.metadatacenter.orgx",
-      "templateUploadEndpoint": "/upload.php",
-      "templateDownloadEndpoint": "/download.php",
-      "templateUploadParamName": "3520cf061bba4919a8ea4b74a07af01b",
-      "templateDownloadParamName": "9ff482bacac84c499655ab58efdf590a",
-      "showDataSaver": false,
-      "dataSaverEndpointUrl": "http://localhost:8000/datasave.php",
-      "sampleTemplateLocationPrefix": "https://component.metadatacenter.orgx/cedar-embeddable-editor-sample-templates/",
       "showSampleTemplateLinks": false,
-      "terminologyProxyUrl": 'https://terminology.metadatacenter.org/bioportal/integrated-search',
+      "terminologyIntegratedSearchUrl": 'https://terminology.metadatacenter.org/bioportal/integrated-search',
       "showHeader": false,
       "showFooter": false,
     };

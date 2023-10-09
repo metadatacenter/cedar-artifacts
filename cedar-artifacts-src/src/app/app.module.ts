@@ -14,6 +14,7 @@ import {AppConfigService} from "./services/app-config.service";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {initializeKeycloak} from "./init/keycloak-init.factory";
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
+import "cedar-embeddable-editor/cedar-embeddable-editor.js";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {

@@ -9,6 +9,7 @@ import {DataHandlerService} from '../../../../services/data-handler.service';
 import {AppConfigService} from '../../../../services/app-config.service';
 import {KeycloakService} from "keycloak-angular";
 import {UiService} from "../../../../services/ui.service";
+import {globalAppConfig} from "../../../../../environments/global-app-config";
 
 @Component({
   selector: 'app-dashboard',
@@ -35,4 +36,9 @@ export class DashboardComponent extends CedarPageComponent implements OnInit {
   override ngOnInit() {
     super.ngOnInit();
   }
+
+  openCEDARPage() {
+    this.uiService.openUrl(globalAppConfig.cedarUrl);
+  }
+
 }
