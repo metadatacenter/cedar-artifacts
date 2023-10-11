@@ -25,7 +25,9 @@
     "SelectYearAndMonth": "Év és hónap kiválasztása",
     "SelectDate": "Dátum kiválasztása",
     "NumberOnly": "Csak szám",
-    "CedarLogo": "CEDAR logó"
+    "CedarLogo": "CEDAR logó",
+    "DecimalSeconds": "tizedmásodpercek",
+    "Szűrés": "Kezdjen el írni a szűréshez"
   },
   "Process": {
     "Initializing": "A CEDAR Beágyazható Szerkesztő inicializálása..."
