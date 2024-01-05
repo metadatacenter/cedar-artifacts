@@ -100,7 +100,7 @@
               "browserTarget": "cedar-artifacts:build:production"
             },
             "development": {
-              "browserTarget": "cedar-artifacts:build:development",
+              "browserTarget": "cedar-artifacts:build:development"
             }
           },
           "defaultConfiguration": "development"
