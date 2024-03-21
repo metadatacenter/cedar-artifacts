@@ -93,7 +93,8 @@
           "options": {
             "browserTarget": "cedar-artifacts:build",
             "port": 4320,
-            "disableHostCheck": true
+            "disableHostCheck": true,
+            "host": "0.0.0.0"
           },
           "configurations": {
             "production": {
