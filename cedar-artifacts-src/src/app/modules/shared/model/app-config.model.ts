@@ -2,6 +2,7 @@ export class AppConfig {
   appUrl: string = '';
   apiUrl: string = '';
   cedarUrl: string = '';
+  integratedSearchUrl: string = '';
   keycloakUrl: string = '';
   loaded: boolean = false;
 
@@ -11,6 +12,7 @@ export class AppConfig {
     this.appUrl = appConfig.appUrl.replace('{{cedarDomain}}', domain);
     this.apiUrl = appConfig.apiUrl.replace('{{cedarDomain}}', domain);
     this.cedarUrl = appConfig.cedarUrl.replace('{{cedarDomain}}', domain);
+    this.integratedSearchUrl = appConfig.integratedSearchUrl.replace('{{cedarDomain}}', domain);
     this.loaded = true;
   }
 }
