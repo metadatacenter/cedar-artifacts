@@ -13,6 +13,7 @@ import {DataHandlerDataId} from "../../../shared/model/data-handler-data-id.mode
 import {DataHandlerDataStatus} from "../../../shared/model/data-handler-data-status.model";
 import {Template} from "../../../../shared/model/template.model";
 import {TemplateInstance} from '../../../../shared/model/template-instance.model';
+import {globalAppConfig} from "../../../../../environments/global-app-config";
 
 @Component({
   selector: 'app-instances-edit',
@@ -50,7 +51,7 @@ export class InstancesEditComponent extends CedarPageComponent implements OnInit
     // TODO: these conf should be input to components
     this.conf = {
       "showSampleTemplateLinks": false,
-      "terminologyIntegratedSearchUrl": 'https://terminology.metadatacenter.org/bioportal/integrated-search',
+      "terminologyIntegratedSearchUrl": globalAppConfig.integratedSearchUrl,
       "showHeader": false,
       "showFooter": false,
     };

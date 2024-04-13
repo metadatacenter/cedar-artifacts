@@ -13,6 +13,7 @@ import {HttpClient} from '@angular/common/http';
 import {UiService} from '../../../../services/ui.service';
 import {AppConfigService} from '../../../../services/app-config.service';
 import {KeycloakService} from "keycloak-angular";
+import {globalAppConfig} from "../../../../../environments/global-app-config";
 
 @Component({
   selector: 'app-instances-create',
@@ -47,7 +48,7 @@ export class InstancesCreateComponent extends CedarPageComponent implements OnIn
     // TODO: this conf should be input parameter
     this.conf = {
       "showSampleTemplateLinks": false,
-      "terminologyIntegratedSearchUrl": 'https://terminology.metadatacenter.org/bioportal/integrated-search',
+      "terminologyIntegratedSearchUrl": globalAppConfig.integratedSearchUrl,
       "showHeader": false,
       "showFooter": false,
     };
