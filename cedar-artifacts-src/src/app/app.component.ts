@@ -13,10 +13,8 @@ import {LocalSettingsService} from "./services/local-settings.service";
 export class AppComponent {
   title = 'cedar-artifacts';
   ceeConfig = {
-    "showSampleTemplateLinks": false,
+    "showDownloadMenu": true,
     "terminologyIntegratedSearchUrl": "",
-    "showHeader": false,
-    "showFooter": false,
   };
 
   createUUID = () => {

@@ -47,10 +47,8 @@ export class InstancesCreateComponent extends CedarPageComponent implements OnIn
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak);
     // TODO: this conf should be input parameter
     this.conf = {
-      "showSampleTemplateLinks": false,
+      "showDownloadMenu": true,
       "terminologyIntegratedSearchUrl": globalAppConfig.integratedSearchUrl,
-      "showHeader": false,
-      "showFooter": false,
     };
   }
 
