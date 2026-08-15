@@ -48,7 +48,8 @@ export class InstancesCreateComponent extends CedarPageComponent implements OnIn
     // TODO: this conf should be input parameter
     this.conf = {
       "showDownloadMenu": true,
-      "terminologyIntegratedSearchUrl": globalAppConfig.integratedSearchUrl,
+      "terminologyBaseUrl": globalAppConfig.terminologyBaseUrl,
+      "bridgeBaseUrl": globalAppConfig.bridgeBaseUrl,
     };
   }
 

@@ -14,7 +14,7 @@ export class AppComponent {
   title = 'cedar-artifacts';
   ceeConfig = {
     "showDownloadMenu": true,
-    "terminologyIntegratedSearchUrl": "",
+    "terminologyBaseUrl": "",
   };
 
   createUUID = () => {

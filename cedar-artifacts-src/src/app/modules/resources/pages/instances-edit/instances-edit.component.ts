@@ -51,7 +51,8 @@ export class InstancesEditComponent extends CedarPageComponent implements OnInit
     // TODO: these conf should be input to components
     this.conf = {
       "showDownloadMenu": true,
-      "terminologyIntegratedSearchUrl": globalAppConfig.integratedSearchUrl,
+      "terminologyBaseUrl": globalAppConfig.terminologyBaseUrl,
+      "bridgeBaseUrl": globalAppConfig.bridgeBaseUrl,
     };
   }
 
