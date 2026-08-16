@@ -2,6 +2,7 @@
   "appUrl": "https://artifacts.{{cedarDomain}}/",
   "apiUrl": "https://resource.{{cedarDomain}}/",
   "cedarUrl": "https://cedar.{{cedarDomain}}/",
-  "integratedSearchUrl": "https://terminology.{{cedarDomain}}/bioportal/integrated-search",
+  "terminologyBaseUrl": "https://terminology.{{cedarDomain}}/",
+  "bridgeBaseUrl": "https://bridge.{{cedarDomain}}/",
   "keycloakUrl": "https://auth.{{cedarDomain}}/"
 }
